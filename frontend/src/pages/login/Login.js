@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import bg from "../../assets/bgfinal.svg";
-import logo from "../../assets/Logo.jpg";
+import logo from "../../assets/Logo.svg";
+// import login from "../../assets/login_bg.png";
 import google from "../../assets/google.svg";
 import github from "../../assets/github.svg";
-import signup from "../../assets/signup.svg";
-// import axios from "../../axios";
-import { useNavigate } from "react-router-dom";
+// import axios from '../../axios';
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const navigate = useNavigate() ;
+  const navigate = useNavigate();
   const [input, setInput] = useState({
-    role: "",
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -26,125 +24,102 @@ const Login = () => {
   };
 
   const SubmitHandler = async (e) => {
-//     e.preventDefault();
-//     const user = {email: input.email, password : input.password ,role:input.role}
-//     const role = input.role;
-//     try {
-//       if(role=="student"){
-//         const res = await axios.post("/student/login", user);
-//         console.log(res.data);
-//         localStorage.setItem("signature",res.data.signature)
-//         navigate("/")
-//       }
-//       else {
-//         const res = await axios.post("/teacher/login", user);
-//         console.log(res.data);
-//         localStorage.setItem("signature",res.data.signature)
-//         navigate("/dashboard2")
-//       }
-//     }catch(error) {
-//       console.log("error form content", error)
-//     }
-//     setInput({
-//       role: "",
-//       email: "",
-//       password: "",
-//     });
+    e.preventDefault();
+    const user = {password : input.password ,username:input.username}
+    try {
+      if(user){
+        // const res = await axios.post("/user/login", user);
+        // console.log(res.data);
+        // localStorage.setItem("token",res.data.token)
+        // localStorage.setItem("id",res.data._id)
+        // console.log('token',res.data.token);
+        navigate("/")
+      }
+    }catch(error) {
+      console.log("error form content", error)
+    }
+
+    setInput({
+      username: "",
+      password: "",
+    });
   };
 
   return (
     <>
       <form onSubmit={SubmitHandler}>
-        <div className="max-h-screen bg-hero text-gray-900 flex justify-center">
-          <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
-            <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-4">
+        {/* <div style={{backgroundImage: `url(${login})`,backgroundSize:"cover"}} className="font-libre text-gray-900 flex justify-center"> */}<div className="font-libre text-gray-900 flex justify-center">
+          <div className=" sm:m-10 pb-10 rounded-3xl">
+            <div className=" ">
               <div>
-                <img src={logo} className="w-32 mx-auto" alt="" />
+                <img src={logo} className="mx-auto transform hover:scale-125 transition duration-500 h-32 w-75" alt="" />
               </div>
-              <div className="mt-4 flex flex-col items-center">
-                <h1 className="text-2xl font-extrabold text-poppins">
-                  Sign In with V-Learn
+              <div className="mt-14 flex flex-col items-center">
+                <h1 className="text-2xl font-extrabold text-poppins text-black">
+                  AgentTrace to stay safe
                 </h1>
-                <div class="w-full flex-1 mt-5">
-                  <div class="flex flex-col items-center">
-                    <button class="w-full max-w-xs font-bold shadow-sm rounded-lg py-2 bg-[#D4D9F6] text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
-                      <div class="bg-white p-2 rounded-full">
-                        <img class="w-4" src={google} alt="" />
-                      </div>
-                      <span class="ml-4">Sign In with Google</span>
-                    </button>
-
-                    <button class="w-full max-w-xs font-bold shadow-sm rounded-lg py-2 bg-[#D4D9F6] text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline mt-5">
-                      <div class="bg-white p-1 rounded-full">
-                        <img class="w-6" src={github} alt="" />
-                      </div>
-                      <span class="ml-4">Sign In with GitHub</span>
-                    </button>
-                  </div>
-
-                  <div class="my-2 border-b text-center">
-                    <div class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                      Or sign up with e-mail
-                    </div>
-                  </div>
-
-                  <div class="mx-auto mt-2 max-w-xs">
+                <div className="w-full flex-1 mt-5">
+                <div className="mx-auto mt-2 max-w-xs">
                     <input
-                      name="role"
-                      class="w-full px-8 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                      name="username"
+                      className="w-full px-8 py-2 mt-5 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                       type="text"
-                      placeholder="role"
-                      value={input.role}
+                      placeholder="Username"
+                      value={input.username}
                       onChange={InputHandler}
                       required
                     />
                     <input
-                      name="email"
-                      class="w-full px-8 py-2 mt-5 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                      type="email"
-                      placeholder="Email"
-                      value={input.email}
-                      onChange={InputHandler}
-                      reaquired
-                    />
-                    <input
                       name="password"
-                      class="w-full px-8 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                      className="w-full px-8 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                       type="password"
-                      placeholder="Set Password"
+                      placeholder="Password"
                       value={input.password}
                       onChange={InputHandler}
                       required
                     />
-                    <button class="mt-3 tracking-wide font-semibold bg-[#233FF2] text-gray-100 w-full py-3 rounded-lg hover:bg-[#1D33AA] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                      <img className="fill-white w-4 h-4" src={signup} alt="" />
-                      <span class="ml-3">Sign In</span>
+                    <button className="mt-3 tracking-wide font-semibold bg-[#0e0667] text-gray-100 w-full py-3 rounded-lg hover:bg-black transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                      {/* <img className="fill-white w-4 h-4 " "" /> */}
+                      <span className="ml-3">Sign In</span>
                     </button>
-                    <div className="flex mt-2">
-                      <div class=" text-xs text-gray-600">
-                        Not Signed In? Sign Up as{" "}
-                        <a
-                          href="/signupteacher"
-                          class="border-b border-gray-500 border-dotted"
+                  </div><br></br>
+                  <div className="flex flex-col items-center">
+                    <div className="w-full max-w-s transform hover:scale-105 transition duration-500">
+                      <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-2 bg-black text-white flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+                        <div className="bg-white p-3 rounded-full">
+                          <img className="w-5 transform hover:scale-150 transition duration-500" src={google} alt="" />
+                        </div>
+                        <span className="ml-4">Sign In with Google</span>
+                      </button>
+                    </div>
+                    
+                    <div className="w-full max-w-ss transform hover:scale-105 transition duration-500">
+                    <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-2 bg-black text-white flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline mt-5">
+                      <div className="bg-white p-2 rounded-full">
+                        <img className="w-6 transform hover:scale-150 transition duration-500" src={github} alt="" />
+                      </div>
+                      <span className="ml-4">Sign In with GitHub</span>
+                    </button>
+                    </div>
+                    
+                  </div>
+
+                  <div className="my-2 text-center">
+                  <div className="flex mt-2">
+                    <div className=" text-sm text-black mx-auto">
+                        Don't have an account?{" "} 
+                        <Link
+                          to="/signup"
+                          className="border-b border-gray-500 border-dotted"
                         >
-                          Teacher
-                        </a>{" "}
-                        or{" "}
-                        <a
-                          href="/signupstudent"
-                          class="border-b border-gray-500 border-dotted"
-                        >
-                          Student
-                        </a>
+                          Come Sign Up Now!
+                        </Link>
                       </div>
                     </div>
                   </div>
+
+                  
                 </div>
-              </div>
-            </div>
-            <div class="flex-1 bg-[#D4D9F6] text-center hidden lg:flex">
-              <div class="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat align-middle items-center">
-                <img src={bg} alt="" />
               </div>
             </div>
           </div>
