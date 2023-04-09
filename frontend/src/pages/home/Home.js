@@ -1,9 +1,12 @@
 import React from 'react'
 import heart from '../../assets/heart-svgrepo-com.svg'
+import Analytics from './Analytics'
+import Landing from './Landing'
 
 const Home = () => {
   return (
-    <div>
+    <div className='bg-gradient-to-b from-[#edf5fe] to-[#cee3fc]'>
+        <Landing />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-24 p-8">
     <div className="flex flex-col items-center">
       <div className="p-4 bg-yellow-200 rounded-full">
@@ -12,7 +15,7 @@ const Home = () => {
         </svg>
       </div>
       <h3 className="font-semibold text-3xl mt-4 text-center">The Smartest Solution</h3>
-      <p className="text-gray-300 text-xl text-center">It's like a lightbulb going on in your head!</p>
+      <p className="text-gray-700 text-xl text-center">It's like a lightbulb going on in your head!</p>
     </div>
     <div className="flex flex-col items-center">
       <div className="p-4 bg-blue-200 rounded-full">
@@ -22,7 +25,7 @@ const Home = () => {
         </svg>
       </div>
       <h3 className="font-semibold text-3xl mt-4 text-center">Easily Configurable</h3>
-      <p className="text-gray-300 text-xl text-center">No more struggling with complex settings</p>
+      <p className="text-gray-700 text-xl text-center">No more struggling with complex settings</p>
     </div>
     <div className="flex flex-col items-center">
       <div className="p-4 bg-green-200 rounded-full">
@@ -31,16 +34,20 @@ const Home = () => {
         </svg>
       </div>
       <h3 className="font-semibold text-3xl mt-4 text-center">Threat Intelligence</h3>
-      <p className="text-gray-300 text-xl text-center">We will keep you updated</p>
+      <p className="text-gray-700 text-xl text-center">We will keep you updated</p>
     </div>
     <div className="flex flex-col items-center">
       <div className="p-4 bg-pink-200 rounded-full">
         <img className='animate-beat w-20' src={heart} alt="" />
       </div>
       <h3 className="font-semibold text-3xl mt-4 text-center">Your Customers Will Love It</h3>
-      <p className="text-gray-300 text-xl text-center">We can guarantee that!</p>
+      <p className="text-gray-700 text-xl text-center">We can guarantee that!</p>
     </div>
-  </div>
+      </div>
+
+      <div className="py-20">
+        <Analytics />
+      </div>
     </div>
   )
 }

@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import dream11 from '../../assets/Dream-11.svg'
-import dream11 from '../../assets/Dream-11.svg'
-import dream11 from '../../assets/Dream-11.svg'
-import dream11 from '../../assets/Dream-11.svg'
-import dream11 from '../../assets/Dream-11.svg'
+import bumble from '../../assets/bumble.svg'
+import tinder from '../../assets/tinder.svg'
+import microsoft from '../../assets/microsoft.svg'
+import googlecolor from '../../assets/google-color.svg'
+import facebook from '../../assets/facebook.svg'
+import instagram from '../../assets/instagram.svg'
+import telegram from '../../assets/telegram.svg'
+import whatsapp from '../../assets/whatsapp.svg'
+import Table from "./Table";
+import RePieChart from "./Piechart";
+import axios from 'axios';
+
 
 const Investigation = () => {
     const [input, setInput] = useState({
@@ -21,12 +29,26 @@ const Investigation = () => {
         });
       };
 
-      const submitHandler = ()=>{
+      const submitHandler = async (e)=>{
+        e.preventDefault();
+    const user = {mobile : input.mobile ,email:input.email}
+    try {
+      if(user){
+        const res = await axios.post("/user/login", user);
+        console.log(res.data);
+      }
+    }catch(error) {
+      console.log("error form content", error)
+    }
 
+    setInput({
+      email: "",
+      mobile: "",
+    });
       }
   return (
     <div>
-      <div className="row">
+      <div className="row border-b-2 border-black">
         <div className="grid grid-cols-1 md:grid-cols-3 bg-slate-200 px-5 md:px-8">
             <div className="col-span-1 h-20 flex">
                 <p className="my-auto font-semibold mx-auto">Mobile Number : </p>
@@ -62,36 +84,98 @@ const Investigation = () => {
             </div>
         </div>
       </div>
+
+      <div className="grid col-span-2 lg:grid-cols-3">
+        <div className="col-span-2">
+        <div className="row">
+        <div className="flex justify-center">
+            <div className="flex items-center lg:mx-40 my-4">
+            <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+            <label for="default-checkbox" className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-600">Cloud Handles</label>
+        </div>
+      </div>
+        <div className="grid grid-cols-3 mx-6">
+            <div className="col-span-1">
+                <img className="w-12 mx-auto" src={microsoft} alt="" />
+                <p className="text-center my-2">Office 365</p>
+            </div>
+            <div className="col-span-1">
+                <img className="w-12 mx-auto" src={googlecolor} alt="" />
+                <p className="text-center my-2">Google</p>
+            </div>
+            <div className="col-span-1">
+                <img className="w-12 mx-auto" src={microsoft} alt="" />
+                <p className="text-center my-2">Office 365</p>
+            </div>
+        </div>
+      </div>
+      <div className="h-[1px] bg-black ml-4" ></div>
+
       <div className="row">
-        <p className="mx-auto">Big Handles</p>
+        <div className="flex justify-center">
+            <div className="flex items-center lg:mx-40 my-4">
+            <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+            <label for="default-checkbox" className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-600">Social Media</label>
+        </div>
+      </div>
+        
         <div className="grid grid-cols-4 mx-6">
             <div className="col-span-1">
-                <img src="" alt="" />
+                <img className="w-12 mx-auto" src={whatsapp} alt="" />
+                <p className="text-center my-2">Whatsapp</p>
+            </div>
+            <div className="col-span-1">
+                <img className="w-12 mx-auto" src={facebook} alt="" />
+                <p className="text-center my-2">Facebook</p>
+            </div>
+            <div className="col-span-1">
+                <img className="w-12 mx-auto" src={instagram} alt="" />
+                <p className="text-center my-2">Instagram</p>
+            </div>
+            <div className="col-span-1">
+                <img className="w-12 mx-auto" src={telegram} alt="" />
+                <p className="text-center my-2">Telegram</p>
             </div>
         </div>
       </div>
+      <div className="h-[1px] bg-black ml-4" ></div>
+
       <div className="row">
-        <p className="mx-auto">Big Handles</p>
-        <div className="grid grid-cols-4 mx-6">
-            <div className="col-span-1 mx-auto">
-                <img className="w-40" src={dream11} alt="" />
-                <p className="mx-auto">Dream 11</p>
+      <div className="flex justify-center">
+            <div className="flex items-center lg:mx-40 my-4">
+            <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+            <label for="default-checkbox" className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-600">Dating/Betting Handles</label>
+        </div>
+      </div>
+
+        <div className="grid grid-cols-3 mx-6">
+            <div className="col-span-1">
+                <img className="w-12 h-12 mx-auto" src={dream11} alt="" />
+                <p className="text-center my-2">Dream 11</p>
             </div>
-            <div className="col-span-1 mx-auto">
-                <img className="w-40" src={dream11} alt="" />
-                <p className="mx-auto">Dream 11</p>
+            <div className="col-span-1">
+                <img className="w-12 mx-auto" src={tinder} alt="" />
+                <p className="text-center my-2">Tinder</p>
+            </div>
+            <div className="col-span-1">
+                <img className="w-12 mx-auto" src={bumble} alt="" />
+                <p className="text-center my-2">Bumble</p>
             </div>
         </div>
       </div>
-      <div className="row">
-        <p className="mx-auto">Betting Websites</p>
-        <div className="grid grid-cols-4 mx-6">
-            <div className="col-span-1 mx-auto">
-                <img className="w-40" src={dream11} alt="" />
-                <p className="mx-auto">Dream 11</p>
-            </div>
+      <div className="h-[1px] bg-black ml-4" ></div>
         </div>
+
+        <div className="col-span-2 lg:col-span-1 my-5">
+            <Table />
+        </div>
+
       </div>
+
+      <div className="grid col-span-1 lg:col-span-2">
+        <RePieChart/>
+      </div>
+      
     </div>
   )
 }
