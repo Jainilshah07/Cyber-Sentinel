@@ -3,17 +3,17 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-options = webdriver.ChromeOptions()
 # options.add_argument("--start-maximized")
 # options.add_argument("--headless")
 # options.add_argument("--window-size=0,0")
-options.add_experimental_option('excludeSwitches', ['enable-logging'])
-path = '/chromedriver'
-service = webdriver.chrome.service.Service(path)
-driver = webdriver.Chrome(service=service, options=options)
 
 
 def get_details_instagram(email):
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    path = '/chromedriver'
+    service = webdriver.chrome.service.Service(path)
+    driver = webdriver.Chrome(service=service, options=options)
     driver.get('https://www.instagram.com/accounts/emailsignup/')
     wait = WebDriverWait(driver, 10)
     elem = wait.until(EC.presence_of_element_located(
@@ -27,6 +27,7 @@ def get_details_instagram(email):
         register = "Registered"
     except:
         register = "Not Registered"
+    driver.close()
     return {
         "register": register
     }
