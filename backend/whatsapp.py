@@ -14,9 +14,9 @@ driver = webdriver.Chrome(path, options=options)
 
 def get_details_whatsapp(mobile):
     driver.get('https://web.whatsapp.com/')
-    time.sleep(10)
+    time.sleep(15)
     chat_name = 'Myself'
-    time.sleep(5)
+    time.sleep(8)
     chat = driver.find_element(By.XPATH, f"//span[@title='{chat_name}']")
     time.sleep(2)
     print(chat)
@@ -101,5 +101,3 @@ def get_details_whatsapp(mobile):
         'last_seen': last_seen_text
     }
 
-
-print(get_details_whatsapp('919325467196'))

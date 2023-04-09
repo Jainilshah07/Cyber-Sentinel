@@ -6,12 +6,12 @@ import logo from '../assets/Logo.svg'
 const Navbar = () => {
 
   let [open, setOpen] = useState(true);
-  let [open1, setOpen1] = useState(false);
+  // let [open1, setOpen1] = useState(false);
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-white border-b-[1.5px] border-black p-2 text-[16px]">
       <Link to="/" className="mr-4 inline-flex items-center">
-        <img src={logo}></img>
+        <img className='mt-[-15px]'  width={"130px"} src={logo} alt='logo' ></img>
       </Link>
       <div className="block lg:hidden">
         <button className="flex items-center px-3 py-2 border rounded border-black text-white bg-[#4051A3] hover:text-black hover:bg-white" onClick={() => setOpen(!open)}>
@@ -23,8 +23,8 @@ const Navbar = () => {
           <Link to="/investigation" className="block lg:inline-block text-base lg:mt-0 text-black hover:bg-gray-200 p-2 hover:rounded-full mr-4 lg:mr-8">
             <span>Investigation</span>
           </Link>
-          <Link to="/events/blogs/all" className="block lg:inline-block text-base lg:mt-0 text-black hover:bg-gray-200 p-2 hover:rounded-full mr-4 lg:mr-8">
-            <span>Blogs</span>
+          <Link to="/FAQs" className="block lg:inline-block text-base lg:mt-0 text-black hover:bg-gray-200 p-2 hover:rounded-full mr-4 lg:mr-8">
+            <span>FAQs</span>
           </Link>
           <Link to="/ourteam" className="block lg:inline-block text-base lg:mt-0 text-black hover:bg-gray-200 p-2 hover:rounded-full mr-4 lg:mr-8">
             <span>Our Team</span>
@@ -39,9 +39,6 @@ const Navbar = () => {
             <span>Data 2 Knowledge</span>
           </Link>
         </div>
-        {/* <div>
-          <Link href="/" className="inline-block text-sm py-4 px-12 leading-none border rounded-xl text-white bg-[#4051A3] border-black hover:bg-white hover:text-black mt-4 lg:mt-0 font-[Ubuntu] font-light">Sign In</Link>
-        </div> */}
       </div>
     </nav>
   )

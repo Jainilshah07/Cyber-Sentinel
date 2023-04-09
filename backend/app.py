@@ -15,8 +15,8 @@ def index():
 
 @app.route('/api/whatsapp', methods=['POST'])
 def whatsapp_api():
-    mobile = request.form['mobile']
-    return get_details_whatsapp(mobile)
+    mobile= request.json['mobile']
+    return get_details_whatsapp('91'+mobile)
 
 
 @app.route('/api/instagram', methods=['POST'])
