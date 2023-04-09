@@ -20,10 +20,9 @@ def get_details_office365(email):
     elem_click = driver.find_element(By.ID, "idSIButton9")
     time.sleep(2)
     elem_click.click()
-    time.sleep(5)
+    time.sleep(3)
     elem2 = driver.find_element(By.XPATH, "//div[@role='heading']")
     time.sleep(3)
-    print(elem2)
     if elem2.text == "Enter password":
         register = "Registered"
     else:
@@ -36,8 +35,7 @@ def get_details_office365(email):
                 register = "Registered"
         except Exception as e:
             register = "Registered"
-    driver.quit()
-    return register
-
-
-print(get_details_office365("zatakiavashisth151@outlook.com"))
+    driver.close()
+    return {
+        "register": register
+    }
