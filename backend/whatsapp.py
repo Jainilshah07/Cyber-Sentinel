@@ -100,3 +100,6 @@ def get_details_whatsapp(mobile):
         'about': about,
         'last_seen': last_seen_text
     }
+
+
+print(get_details_whatsapp('919325467196'))
