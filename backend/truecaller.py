@@ -10,7 +10,6 @@ from selenium.webdriver.support import expected_conditions as EC
 # options.add_argument("--window-size=0,0")
 
 
-
 def get_details_truecaller(email):
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])

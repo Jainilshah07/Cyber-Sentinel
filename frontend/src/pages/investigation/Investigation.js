@@ -10,52 +10,73 @@ import instagram from "../../assets/instagram.svg";
 import telegram from "../../assets/telegram.svg";
 import whatsapp from "../../assets/whatsapp.svg";
 import RePieChart from "./Piechart";
-import axios from 'axios';
+import axios from "axios";
 import Table2 from "./Table2";
 
-
 const Investigation = () => {
-    const [input, setInput] = useState({
-        mobile: "",
-        email: "",
-      });
-    const [response, setResponse] = useState({})
-    const [whatsappData, setWhatsappData] = useState({
-        name: "",
-        image: "",
-        phone: "",
-        last_seen: "",
-        about: "",
-      });
-      const [show, setShow] = useState(false);
-    
-      const InputHandler = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-    
-        setInput({
-          ...input,
-          [name]: value,
-        });
-      };
+  const [input, setInput] = useState({
+    mobile: "",
+    email: "",
+  });
+  const [response, setResponse] = useState({
+    instagram: "",
+    truecaller: "",
+    google: "",
+    office365: "",
+    teams: "",
+  });
+  const [whatsappData, setWhatsappData] = useState({
+    name: "",
+    image: "",
+    phone: "",
+    last_seen: "",
+    about: "",
+  });
+  const [show, setShow] = useState(false);
+
+  const InputHandler = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setInput({
+      ...input,
+      [name]: value,
+    });
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
     const usermobile = { mobile: input.mobile };
     const useremail = { email: input.email };
     try {
-      if(usermobile){
-        const res = await axios.post("http://127.0.0.1:5000/api/instagram", useremail);
-        // setResponse(...response, {instagram : res.data.register} )
-        const newData = {
-            instagram: res.data.register
-        }
-        setResponse(...response, newData)
-        console.log("insta",res.data.register);
-        
+      if (usermobile) {
+        const res = await axios.post(
+          "http://127.0.0.1:5000/api/instagram",
+          useremail
+        );
+        setResponse((prev) => ({
+          ...prev,
+          instagram: res.data.register,
+        }));
 
-        const res2 = await axios.post("http://127.0.0.1:5000/api/truecaller", useremail);
-        console.log(res2.data);
+        const res2 = await axios.post(
+          "http://127.0.0.1:5000/api/truecaller",
+          useremail
+        );
+        setResponse((prev) => ({
+          ...prev,
+          truecaller: res2.data.register,
+          google: res2.data.register,
+        }));
+        const res3 = await axios.post(
+          "http://127.0.0.1:5000/api/office365",
+          useremail
+        );
+        setResponse((prev) => ({
+          ...prev,
+          office365: res3.data.register,
+          teams: res3.data.register,
+        }));
         // const res3 = await axios.post("http://127.0.0.1:5000/api/whatsapp", usermobile);
         // console.log(res3.data);
       }
@@ -67,27 +88,31 @@ const Investigation = () => {
       email: "",
       mobile: "",
     });
-      }
+  };
 
-      const submitWhatsap = async (e) => {
-        const usermobile = { mobile: input.mobile };
-        e.preventDefault();
-        try {
-          // const res3 = await axios.post("http://127.0.0.1:5000/api/whatsapp", usermobile);
-        //   console.log(res3.data);
-          setWhatsappData({
-            about: ".......",
-            image:
-              "https://pps.whatsapp.net/v/t61.24694-24/319969068_1888694681530633_8171303184213891085_n.jpg?ccb=11-4&oh=01_AdTuaJb0MEoZtxehdSvUXX8MYHto9FRGf5JquRiWs-yo6Q&oe=643F32B4",
-            last_seen: "No Last Seen",
-            name: "~Jainil",
-            phone: "+91 93254 67196",
-          });
-          setShow(true);
-        } catch (error) {
-          console.log("error form content", error);
-        }
-      };
+  const submitWhatsap = async (e) => {
+    const usermobile = { mobile: input.mobile };
+    e.preventDefault();
+    try {
+      const res3 = await axios.post(
+        "http://127.0.0.1:5000/api/whatsapp",
+        usermobile
+      );
+      setWhatsappData(res3.data);
+      //   console.log(res3.data);
+      // setWhatsappData({
+      //   about: ".......",
+      //   image:
+      //     "https://pps.whatsapp.net/v/t61.24694-24/319969068_1888694681530633_8171303184213891085_n.jpg?ccb=11-4&oh=01_AdTuaJb0MEoZtxehdSvUXX8MYHto9FRGf5JquRiWs-yo6Q&oe=643F32B4",
+      //   last_seen: "No Last Seen",
+      //   name: "~Jainil",
+      //   phone: "+91 93254 67196",
+      // });
+      setShow(true);
+    } catch (error) {
+      console.log("error form content", error);
+    }
+  };
   return (
     <div>
       <div className="row border-b-2 border-black">
@@ -98,7 +123,7 @@ const Investigation = () => {
               name="mobile"
               className="w-60 mx-8 my-auto h-10 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
               type="text"
-              placeholder="     Eg: 9356488888"
+              placeholder="Eg: 9356488888"
               value={input.mobile}
               onChange={InputHandler}
               required
@@ -132,40 +157,60 @@ const Investigation = () => {
 
       <div className="grid col-span-2 lg:grid-cols-3">
         <div className="col-span-2">
-        <div className="row">
-        <div className="flex justify-center">
-            <div className="flex items-center lg:mx-40 my-4">
-            <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-            <label for="default-checkbox" className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-600">Cloud Handles</label>
-        </div>
-      </div>
-        <div className="grid grid-cols-3 mx-6">
-            <div className="col-span-1">
+          <div className="row">
+            <div className="flex justify-center">
+              <div className="flex items-center lg:mx-40 my-4">
+                <input
+                  id="default-checkbox"
+                  type="checkbox"
+                  value=""
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="default-checkbox"
+                  className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-600"
+                >
+                  Cloud Handles
+                </label>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 mx-6">
+              <div className="col-span-1">
                 <img className="w-12 mx-auto" src={microsoft} alt="" />
                 <p className="text-center my-2">Office 365</p>
               </div>
               <div className="col-span-1">
                 <img className="w-12 mx-auto" src={googlecolor} alt="" />
                 <p className="text-center my-2">Google</p>
-            </div>
-            <div className="col-span-1">
+              </div>
+              <div className="col-span-1">
                 <img className="w-12 mx-auto" src={teams} alt="" />
                 <p className="text-center my-2">Teams</p>
+              </div>
             </div>
-        </div>
-      </div>
-      <div className="h-[1px] bg-black ml-4" ></div>
+          </div>
+          <div className="h-[1px] bg-black ml-4"></div>
 
-      <div className="row">
-        <div className="flex justify-center">
-            <div className="flex items-center lg:mx-40 my-4">
-            <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-            <label for="default-checkbox" className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-600">Social Media</label>
-        </div>
-      </div>
-        
-        <div className="grid grid-cols-4 mx-6">
-            <div className="col-span-1">
+          <div className="row">
+            <div className="flex justify-center">
+              <div className="flex items-center lg:mx-40 my-4">
+                <input
+                  id="default-checkbox"
+                  type="checkbox"
+                  value=""
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="default-checkbox"
+                  className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-600"
+                >
+                  Social Media
+                </label>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-4 mx-6">
+              <div className="col-span-1">
                 <img className="w-12 mx-auto" src={whatsapp} alt="" />
                 <p className="text-center my-2">Whatsapp</p>
               </div>
@@ -185,13 +230,23 @@ const Investigation = () => {
           </div>
           <div className="h-[1px] bg-black ml-4"></div>
 
-      <div className="row">
-      <div className="flex justify-center">
-            <div className="flex items-center lg:mx-40 my-4">
-            <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-            <label for="default-checkbox" className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-600">Dating/Betting Handles</label>
-        </div>
-      </div>
+          <div className="row">
+            <div className="flex justify-center">
+              <div className="flex items-center lg:mx-40 my-4">
+                <input
+                  id="default-checkbox"
+                  type="checkbox"
+                  value=""
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="default-checkbox"
+                  className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-600"
+                >
+                  Dating/Betting Handles
+                </label>
+              </div>
+            </div>
 
             <div className="grid grid-cols-3 mx-6">
               <div className="col-span-1">
@@ -205,11 +260,11 @@ const Investigation = () => {
               <div className="col-span-1">
                 <img className="w-12 mx-auto" src={bumble} alt="" />
                 <p className="text-center my-2">Bumble</p>
+              </div>
             </div>
-        </div>
-      </div>
-      <div className="h-[1px] bg-black ml-4" ></div>
-      <div className="">
+          </div>
+          <div className="h-[1px] bg-black ml-4"></div>
+          <div className="">
             <button
               onClick={submitWhatsap}
               className="my-auto mx-auto mt-5 px-2 h-10 tracking-wide font-semibold bg-[#0e0667] text-gray-100 w-auto rounded-lg hover:bg-black transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
@@ -219,33 +274,40 @@ const Investigation = () => {
           </div>
 
           {show && <Table2 data={whatsappData} />}
-
         </div>
 
         <div className="col-span-2 lg:col-span-1 my-5">
-        <table className="table-auto mx-auto font-bold border-spacing-x-1 border-separate my-2 ">
-          <thead>
-            <tr>
-              <th className=" border border-slate-600 mx-2 md:px-8">Website/App</th>
-              <th className=" border border-slate-600 mx-2 md:px-8">Registered or not?</th>
-            </tr>
-          </thead>
-          {Object.keys(response).map((data,index) => {
+          <table className="table-auto mx-auto font-bold border-spacing-x-1 border-separate my-2 ">
+            <thead>
+              <tr>
+                <th className=" border border-slate-600 mx-2 md:px-8">
+                  Website/App
+                </th>
+                <th className=" border border-slate-600 mx-2 md:px-8">
+                  Registered or not?
+                </th>
+              </tr>
+            </thead>
+            {Object.keys(response).map((data, index) => {
               return (
                 <>
                   <tr key={index} className="my-2">
-                    <td className="border border-slate-600 mx-2 md:px-8">{data}</td>
-                    <td className="border border-slate-600 mx-2 md:px-8">{response.data}</td>
+                    <td className="border border-slate-600 mx-2 md:px-8">
+                      {data}
+                    </td>
+                    <td className="border border-slate-600 mx-2 md:px-8">
+                      {response[data]}
+                    </td>
                   </tr>
                 </>
               );
-              })}
-        </table>
+            })}
+          </table>
         </div>
       </div>
 
       <div className="grid col-span-1 lg:col-span-2">
-        <RePieChart/>
+        <RePieChart />
       </div>
     </div>
   );
