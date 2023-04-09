@@ -18,7 +18,7 @@ const FAQs = () => {
           <div className="group outline-none accordion-section" tabindex="1">
             <div className="group bg-black flex justify-between px-4 py-3 items-center text-white transition ease duration-500 cursor-pointer pr-10 relative">
               <div className="group-focus:text-white md:text-xl text-base transition ease duration-500">
-                What is a Hackathon?
+                What is Cyber Security?
               </div>
               <div className="h-8 w-8 rounded-full items-center inline-flex justify-center transform transition ease duration-500 group-focus:text-white group-focus:-rotate-180 absolute top-0 right-0 mb-auto ml-auto mt-2 mr-2">
                 <img src={Faqicon} alt="" />
@@ -36,7 +36,7 @@ const FAQs = () => {
           <div className="group outline-none accordion-section" tabindex="2">
             <div className="group bg-black flex justify-between px-4 py-3 items-center text-white transition ease duration-500 cursor-pointer pr-10 relative">
               <div className="group-focus:text-white md:text-xl text-base transition ease duration-500">
-                What should be my preparation for a hackathon?
+                What is web scrapping and why is it used?
               </div>
               <div className="h-8 w-8 rounded-full items-center inline-flex justify-center transform transition ease duration-500 group-focus:text-white group-focus:-rotate-180 absolute top-0 right-0 mb-auto ml-auto mt-2 mr-2">
                 <img src={Faqicon} alt="" />
@@ -55,7 +55,7 @@ const FAQs = () => {
           <div className="group outline-none accordion-section" tabindex="3">
             <div className="group bg-black flex justify-between px-4 py-3 items-center text-white transition ease duration-500 cursor-pointer pr-10 relative">
               <div className="group-focus:text-white md:text-xl text-base transition ease duration-500">
-                What will be provided during the hackathon?
+                What is Selenium and its usage?
               </div>
               <div className="h-8 w-8 rounded-full items-center inline-flex justify-center transform transition ease duration-500 group-focus:text-white group-focus:-rotate-180 absolute top-0 right-0 mb-auto ml-auto mt-2 mr-2">
                 <img src={Faqicon} alt="" />
@@ -74,7 +74,7 @@ const FAQs = () => {
           <div className="group outline-none accordion-section" tabindex="4">
             <div className="group bg-black flex justify-between px-4 py-3 items-center text-white transition ease duration-500 cursor-pointer pr-10 relative">
               <div className="group-focus:text-white md:text-xl text-base transition ease duration-500">
-                How do I form a team?
+                How do we do ethical hacking?
               </div>
               <div className="h-8 w-8 rounded-full items-center inline-flex justify-center transform transition ease duration-500 group-focus:text-white group-focus:-rotate-180 absolute top-0 right-0 mb-auto ml-auto mt-2 mr-2">
                 <img src={Faqicon} alt="" />
@@ -93,7 +93,7 @@ const FAQs = () => {
           <div className="group outline-none accordion-section" tabindex="5">
             <div className="group bg-black flex justify-between px-4 py-3 items-center text-white transition ease duration-500 cursor-pointer pr-10 relative">
               <div className="group-focus:text-white md:text-xl text-base transition ease duration-500">
-                What should I bring?
+                Why is security so important ?
               </div>
               <div className="h-8 w-8 rounded-full items-center inline-flex justify-center transform transition ease duration-500 group-focus:text-white group-focus:-rotate-180 absolute top-0 right-0 mb-auto ml-auto mt-2 mr-2">
                 <img src={Faqicon} alt="" />

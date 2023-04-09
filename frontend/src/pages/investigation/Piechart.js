@@ -2,15 +2,12 @@ import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 
 const data = [
-  { name: 'NHAI', value: 400 },
-  { name: 'NHAI', value: 300 },
-  { name: 'HUDCO', value: 300 },
-  { name: 'RECLTD', value: 200 },
-  { name: 'PFC', value: 278 },
-  { name: 'NHBTF2014', value: 600 },
+  { name: 'Cloud', value: 400 },
+  { name: 'Social Media', value: 300 },
+  { name: 'Dating/Betting', value: 300 },
 ];
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
 const RePieChart = () => {
   return (
