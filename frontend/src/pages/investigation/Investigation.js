@@ -11,6 +11,7 @@ import telegram from "../../assets/telegram.svg";
 import whatsapp from "../../assets/whatsapp.svg";
 import RePieChart from "./Piechart";
 import axios from 'axios';
+import Table2 from "./Table2";
 
 
 const Investigation = () => {
@@ -19,6 +20,14 @@ const Investigation = () => {
         email: "",
       });
     const [response, setResponse] = useState({})
+    const [whatsappData, setWhatsappData] = useState({
+        name: "",
+        image: "",
+        phone: "",
+        last_seen: "",
+        about: "",
+      });
+      const [show, setShow] = useState(false);
     
       const InputHandler = (e) => {
         const name = e.target.name;
@@ -59,6 +68,26 @@ const Investigation = () => {
       mobile: "",
     });
       }
+
+      const submitWhatsap = async (e) => {
+        const usermobile = { mobile: input.mobile };
+        e.preventDefault();
+        try {
+          // const res3 = await axios.post("http://127.0.0.1:5000/api/whatsapp", usermobile);
+        //   console.log(res3.data);
+          setWhatsappData({
+            about: ".......",
+            image:
+              "https://pps.whatsapp.net/v/t61.24694-24/319969068_1888694681530633_8171303184213891085_n.jpg?ccb=11-4&oh=01_AdTuaJb0MEoZtxehdSvUXX8MYHto9FRGf5JquRiWs-yo6Q&oe=643F32B4",
+            last_seen: "No Last Seen",
+            name: "~Jainil",
+            phone: "+91 93254 67196",
+          });
+          setShow(true);
+        } catch (error) {
+          console.log("error form content", error);
+        }
+      };
   return (
     <div>
       <div className="row border-b-2 border-black">
@@ -120,8 +149,8 @@ const Investigation = () => {
                 <p className="text-center my-2">Google</p>
             </div>
             <div className="col-span-1">
-                <img className="w-12 mx-auto" src={microsoft} alt="" />
-                <p className="text-center my-2">Office 365</p>
+                <img className="w-12 mx-auto" src={teams} alt="" />
+                <p className="text-center my-2">Teams</p>
             </div>
         </div>
       </div>
@@ -180,6 +209,17 @@ const Investigation = () => {
         </div>
       </div>
       <div className="h-[1px] bg-black ml-4" ></div>
+      <div className="">
+            <button
+              onClick={submitWhatsap}
+              className="my-auto mx-auto mt-5 px-2 h-10 tracking-wide font-semibold bg-[#0e0667] text-gray-100 w-auto rounded-lg hover:bg-black transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+            >
+              <span className="mx-3">Get Details of whatsapp</span>
+            </button>
+          </div>
+
+          {show && <Table2 data={whatsappData} />}
+
         </div>
 
         <div className="col-span-2 lg:col-span-1 my-5">
