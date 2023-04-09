@@ -18,6 +18,7 @@ const Investigation = () => {
         mobile: "",
         email: "",
       });
+    const [response, setResponse] = useState({})
     
       const InputHandler = (e) => {
         const name = e.target.name;
@@ -31,11 +32,23 @@ const Investigation = () => {
 
       const submitHandler = async (e)=>{
         e.preventDefault();
-    const user = {mobile : input.mobile ,email:input.email}
+    const usermobile = {mobile:input.mobile}
+    const useremail = {email:input.email}
     try {
-      if(user){
-        const res = await axios.post("/user/login", user);
-        console.log(res.data);
+      if(usermobile){
+        const res = await axios.post("http://127.0.0.1:5000/api/instagram", useremail);
+        // setResponse(...response, {instagram : res.data.register} )
+        const newData = {
+            instagram: res.data.register
+        }
+        setResponse(...response, newData)
+        console.log("insta",res.data.register);
+        
+
+        const res2 = await axios.post("http://127.0.0.1:5000/api/truecaller", useremail);
+        console.log(res2.data);
+        // const res3 = await axios.post("http://127.0.0.1:5000/api/whatsapp", usermobile);
+        // console.log(res3.data);
       }
     }catch(error) {
       console.log("error form content", error)
@@ -167,7 +180,24 @@ const Investigation = () => {
         </div>
 
         <div className="col-span-2 lg:col-span-1 my-5">
-            <Table />
+        <table className="table-auto mx-auto font-bold border-spacing-x-1 border-separate my-2 ">
+          <thead>
+            <tr>
+              <th className=" border border-slate-600 mx-2 md:px-8">Website/App</th>
+              <th className=" border border-slate-600 mx-2 md:px-8">Registered or not?</th>
+            </tr>
+          </thead>
+          {Object.keys(response).map((data,index) => {
+              return (
+                <>
+                  <tr key={index} className="my-2">
+                    <td className="border border-slate-600 mx-2 md:px-8">{data}</td>
+                    <td className="border border-slate-600 mx-2 md:px-8">{response.data}</td>
+                  </tr>
+                </>
+              );
+              })}
+        </table>
         </div>
 
       </div>
