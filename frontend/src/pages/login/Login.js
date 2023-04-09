@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import logo from "../../assets/Logo.svg";
-// import login from "../../assets/login_bg.png";
+// import cyber from "../../assets/download.jpg";
 import google from "../../assets/google.svg";
 import github from "../../assets/github.svg";
-// import axios from '../../axios';
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -48,8 +47,9 @@ const Login = () => {
   return (
     <>
       <form onSubmit={SubmitHandler}>
-        {/* <div style={{backgroundImage: `url(${login})`,backgroundSize:"cover"}} className="font-libre text-gray-900 flex justify-center"> */}<div className="font-libre text-gray-900 flex justify-center">
+        {/* <div style={{backgroundImage: `url(${cyber})`,backgroundSize:"cover"}} className="font-libre text-gray-900 flex justify-center"> */}
           <div className=" sm:m-10 pb-10 rounded-3xl">
+          <div className="font-libre text-gray-900 flex justify-center">
             <div className=" ">
               <div>
                 <img src={logo} className="mx-auto transform hover:scale-125 transition duration-500 h-32 w-75" alt="" />

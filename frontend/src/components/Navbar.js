@@ -26,7 +26,7 @@ const Navbar = () => {
           <Link to="/FAQs" className="block lg:inline-block text-base lg:mt-0 text-black hover:bg-gray-200 p-2 hover:rounded-full mr-4 lg:mr-8">
             <span>FAQs</span>
           </Link>
-          <Link to="/ourteam" className="block lg:inline-block text-base lg:mt-0 text-black hover:bg-gray-200 p-2 hover:rounded-full mr-4 lg:mr-8">
+          {/* <Link to="/ourteam" className="block lg:inline-block text-base lg:mt-0 text-black hover:bg-gray-200 p-2 hover:rounded-full mr-4 lg:mr-8">
             <span>Our Team</span>
           </Link>
           <Link to="/beginner's-guide" className="block lg:inline-block text-base lg:mt-0 text-black hover:bg-gray-200 p-2 hover:rounded-full mr-4 lg:mr-8">
@@ -37,7 +37,7 @@ const Navbar = () => {
           </Link>
           <Link to="/events/data-2-knowledge" className="block lg:inline-block text-base lg:mt-0 text-black hover:bg-gray-200 p-2 hover:rounded-full mr-4 lg:mr-8">
             <span>Data 2 Knowledge</span>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </nav>
