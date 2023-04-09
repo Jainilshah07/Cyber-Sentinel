@@ -8,7 +8,6 @@ import facebook from "../../assets/facebook.svg";
 import instagram from "../../assets/instagram.svg";
 import telegram from "../../assets/telegram.svg";
 import whatsapp from "../../assets/whatsapp.svg";
-import Table from "./Table";
 import RePieChart from "./Piechart";
 import axios from "axios";
 
@@ -17,7 +16,11 @@ const Investigation = () => {
     mobile: "",
     email: "",
   });
-  const [response, setResponse] = useState({});
+  const [response, setResponse] = useState({
+    instagram: "",
+    truecaller: "",
+    google: "",
+  });
 
   const InputHandler = (e) => {
     const name = e.target.name;
@@ -39,20 +42,25 @@ const Investigation = () => {
           "http://127.0.0.1:5000/api/instagram",
           useremail
         );
-        // setResponse(...response, {instagram : res.data.register} )
-        const newData = {
-          instagram: res.data.register,
-        };
-        setResponse(...response, newData);
-        console.log("insta", res.data.register);
+        const instadata = res.data["register"];
+        //set the responses such that the old data is not overwritten
 
+        setResponse((prev) => ({ ...prev, instagram: instadata }));
         const res2 = await axios.post(
           "http://127.0.0.1:5000/api/truecaller",
           useremail
         );
-        console.log(res2.data);
-        // const res3 = await axios.post("http://127.0.0.1:5000/api/whatsapp", usermobile);
-        // console.log(res3.data);
+        const truecallerdata = res2.data["register"];
+        setResponse((prev) => ({
+          ...prev,
+          truecaller: truecallerdata,
+          google: truecallerdata,
+        }));
+        // const res3 = await axios.post(
+        //   "http://127.0.0.1:5000/api/whatsapp",
+        //   usermobile
+        // );
+        // const whatsappdata = res3.data;
       }
     } catch (error) {
       console.log("error form content", error);
@@ -117,7 +125,7 @@ const Investigation = () => {
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
                 <label
-                  for="default-checkbox"
+                  htmlFor="default-checkbox"
                   className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-600"
                 >
                   Cloud Handles
@@ -151,7 +159,7 @@ const Investigation = () => {
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
                 <label
-                  for="default-checkbox"
+                  htmlFor="default-checkbox"
                   className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-600"
                 >
                   Social Media
@@ -190,7 +198,7 @@ const Investigation = () => {
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
                 <label
-                  for="default-checkbox"
+                  htmlFor="default-checkbox"
                   className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-600"
                 >
                   Dating/Betting Handles
@@ -228,20 +236,20 @@ const Investigation = () => {
                 </th>
               </tr>
             </thead>
-            {Object.keys(response).map((data, index) => {
-              return (
-                <>
-                  <tr key={index} className="my-2">
+            <tbody>
+              {Object.keys(response).map((key) => {
+                return (
+                  <tr key={key}>
                     <td className="border border-slate-600 mx-2 md:px-8">
-                      {data}
+                      {key}
                     </td>
                     <td className="border border-slate-600 mx-2 md:px-8">
-                      {response.data}
+                      {response[key]}
                     </td>
                   </tr>
-                </>
-              );
-            })}
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </div>

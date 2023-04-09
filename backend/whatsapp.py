@@ -3,16 +3,16 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-options = webdriver.ChromeOptions()
 # options.add_argument("--start-maximized")
 # options.add_argument("--headless")
 # options.add_argument("--window-size=0,0")
-options.add_experimental_option('excludeSwitches', ['enable-logging'])
-path = '/chromedriver'
-driver = webdriver.Chrome(path, options=options)
 
 
 def get_details_whatsapp(mobile):
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    path = '/chromedriver'
+    driver = webdriver.Chrome(path, options=options)
     driver.get('https://web.whatsapp.com/')
     time.sleep(15)
     chat_name = 'Myself'
@@ -92,7 +92,7 @@ def get_details_whatsapp(mobile):
         except:
             image = "No Image"
         time.sleep(3)
-        driver.quit()
+    driver.close()
     return {
         'name': name,
         'phone': phone,
@@ -100,4 +100,3 @@ def get_details_whatsapp(mobile):
         'about': about,
         'last_seen': last_seen_text
     }
-
